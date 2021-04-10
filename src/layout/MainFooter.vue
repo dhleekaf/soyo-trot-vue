@@ -8,19 +8,10 @@
       <nav>
         <ul>
           <li>
-            <a href="https://www.creative-tim.com">
-              Creative Tim
-            </a>
+            <a href="https://www.soyo.or.kr/"> SOYO </a>
           </li>
           <li>
-            <a href="https:///presentation.creative-tim.com">
-              About Us
-            </a>
-          </li>
-          <li>
-            <a href="https:///blog.creative-tim.com">
-              Blog
-            </a>
+            <a href="https://www.soyo.or.kr/"> ABOUT US </a>
           </li>
         </ul>
       </nav>
@@ -44,13 +35,13 @@
 export default {
   props: {
     backgroundColor: String,
-    type: String
+    type: String,
   },
   data() {
     return {
-      year: new Date().getFullYear()
+      year: new Date().getFullYear(),
     };
-  }
+  },
 };
 </script>
 <style></style>
