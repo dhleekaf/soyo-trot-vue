@@ -1,11 +1,17 @@
 <template>
   <div>
     <div class="page-header page-header-small">
-      <parallax
-        class="page-header-image"
-        style="background-image: url('img/mister_trot.jpg')"
+      <li
+        v-for="(paral, index) in parallaxList"
+        :key="index"
+        :class="{ off: index !== paral_cur_idx }"
       >
-      </parallax>
+        <parallax
+          class="page-header-image"
+          :style="'background-image: url(' + paral.src + ')'"
+        >
+        </parallax>
+      </li>
       <div class="content-center">
         <div class="container">
           <h1 class="title">내일의 眞 善 美</h1>
@@ -148,6 +154,10 @@
 </template>
 <script>
 import { Button, FormGroupInput } from "@/components";
+
+let timer = null;
+const AUTO_INTERVAL = 5000;
+
 export default {
   name: "landing",
   bodyClass: "landing-page",
@@ -162,6 +172,13 @@ export default {
         email: "",
         message: "",
       },
+      parallaxList: [
+        { src: "img/mister_trot.jpg" },
+        { src: "img/miss_trot.jpg" },
+        { src: "img/miss_trot2_1.jpg" },
+        { src: "img/miss_trot2_2.jpg" },
+      ],
+      paral_cur_idx: 0,
       program: null,
       items: ["내일은 미스트롯2", "트롯 전국체전"],
       predicted: false,
@@ -196,11 +213,27 @@ export default {
   },
   // props: ["value", "items", "input_id"],
   created() {},
+  mounted() {
+    this.setAutoRoll();
+    console.log(timer);
+  },
   methods: {
     updatePrediction: function (value, idx) {
       // this.$emit("input", value);
       this.selected_idx = idx - 1;
       this.predicted = true;
+    },
+    setAutoRoll() {
+      let vueSelf = this;
+      timer = setInterval(function () {
+        vueSelf.addIndex();
+      }, AUTO_INTERVAL);
+    },
+    addIndex() {
+      let new_index = this.paral_cur_idx + 1;
+      this.paral_cur_idx =
+        new_index === this.parallaxList.length ? 0 : new_index;
+      console.log(this.paral_cur_idx);
     },
   },
 };
