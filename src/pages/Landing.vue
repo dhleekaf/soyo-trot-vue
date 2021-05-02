@@ -279,7 +279,6 @@ export default {
   created() {},
   mounted() {
     this.setAutoRoll();
-    console.log(timer);
   },
   methods: {
     updatePrediction: function (value, idx) {
@@ -297,7 +296,6 @@ export default {
       let new_index = this.paral_cur_idx + 1;
       this.paral_cur_idx =
         new_index === this.parallaxList.length ? 0 : new_index;
-      console.log(this.paral_cur_idx);
     },
   },
 };
